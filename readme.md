@@ -36,12 +36,10 @@ cd edx_tools
 *  编译cms：`fab -f edx.py update_assets:cms`
 
 ###生成map文件（用于调试scss）
-*  编译lms：`fab -f edx.py update_assets:lms`
-*  编译cms：`fab -f edx.py update_assets:cms`
+`fab -f edx.py create_scss_maps`
 
 ###实时编译scss
-*  编译lms：`fab -f edx.py update_assets:lms`
-*  编译cms：`fab -f edx.py update_assets:cms`
+`fab -f edx.py watch_assets`
     
 ###edxapp.pip
 *  查看环境中有安装了哪些依赖库：`fab -f edx.py edxapp_pip`
