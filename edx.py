@@ -50,5 +50,24 @@ def restart_edxapp():
 def update_assets(site="lms"):
     run("/edx/bin/edxapp-update-assets-{site}".format(site=site))
 
+#paver update_assets
+def watch_assets(site="lms"):
+    #修改文件,需要远程执行代码
+    sudo("rm /edx/bin/edxapp-watch-assets-{site}".format(site=site))
+    sudo("cp /edx/bin/edxapp-update-assets-{site} /edx/bin/edxapp-watch-assets-{site}".format(site=site))
+    sudo("sed -i 's/update_assets.*/& --debug --watch/' /edx/bin/edxapp-watch-assets-{site}".format(site=site))
+    sudo("/edx/bin/edxapp-watch-assets-{site}".format(site=site))
+
+
+#paver update_assets
+def create_scss_maps(site="lms"):
+    sudo("cp /edx/bin/edxapp-update-assets-{site} /edx/bin/create_scss_maps".format(site=site))
+    sudo("sed -i 's/update_assets.*/& --debug/' /edx/bin/create_scss_maps")
+    sudo("/edx/bin/create_scss_maps".format(site=site))
+    sudo("rm /edx/bin/create_scss_maps")
+
 def edxapp_pip(args="freeze"):
     run("/edx/bin/pip.edxapp {args}".format(args=args))
+
+def test_file():
+    sudo("echo hello > /tmp/a && cp /tmp/a /tmp/b && cat /tmp/b")
