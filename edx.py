@@ -69,5 +69,9 @@ def create_scss_maps(site="lms"):
 def edxapp_pip(args="freeze"):
     run("/edx/bin/pip.edxapp {args}".format(args=args))
 
+def install_notebook():
+    #如果是cypress版需要先重装django-extensions
+    sudo("/edx/bin/pip.edxapp install ipython[notebook]")
+
 def test_file():
     sudo("echo hello > /tmp/a && cp /tmp/a /tmp/b && cat /tmp/b")
