@@ -73,5 +73,9 @@ def install_notebook():
     #如果是cypress版需要先重装django-extensions
     sudo("/edx/bin/pip.edxapp install ipython[notebook]")
 
+#添加css文件到课件页面
+#def add_css_to_courseware_html(url="xxx"):
+#    sudo("sed -i /edx/app/edxapp/edx-platform/lms/templates/courseware/courseware.html")
+
 def test_file():
     sudo("echo hello > /tmp/a && cp /tmp/a /tmp/b && cat /tmp/b")
